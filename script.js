@@ -17,6 +17,12 @@ const getUncheckedCount = () => {
   uncheckedCountSpan.innerHTML = uncheckedCountValue
 }  
 
+// function to remove todo from list
+const deleteItem = (e) => {
+  // identify button element parent and remove it
+  e.target.parentElement.remove()
+}
+
 function newTodo() {
   let todo = prompt('enter new to do task:')
 
@@ -42,6 +48,7 @@ function newTodo() {
     // append todo-delete button to todo-list div
     let deleteButton = document.createElement('button')
     deleteButton.type = 'button'
+    deleteButton.onclick = deleteItem
     deleteButton.innerHTML = 'Delete'
     deleteButton.classList.add(classNames.TODO_DELETE)
     newTodoDiv.appendChild(deleteButton)
