@@ -40,6 +40,10 @@ function newTodo() {
     // append todo-container to todo-list
     list.appendChild(newTodoDiv)
 
+    // get number of list items and render to item-count
+    const count = list.childNodes.length
+    itemCountSpan.innerHTML = count
+    
   } else {
     alert('No todo has been entered!  Please try again.')
   }
