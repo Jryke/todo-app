@@ -9,6 +9,14 @@ const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
+// function to get number of unchecked items and render to unchecked-count
+const getUncheckedCount = () => {
+  // get array of checkboxes, filter out checked boxes, set value to length of array
+  const uncheckedCountValue = [...document.getElementsByClassName(classNames.TODO_CHECKBOX)].filter(item => !item.checked).length
+  // render number of unchecked to unchecked-count
+  uncheckedCountSpan.innerHTML = uncheckedCountValue
+}  
+
 function newTodo() {
   let todo = prompt('enter new to do task:')
 
@@ -21,6 +29,7 @@ function newTodo() {
     // create/append todo-checkbox to todo-list div
     const checkbox = document.createElement('input')
     checkbox.type = 'checkbox'
+    checkbox.onchange = getUncheckedCount
     checkbox.classList.add(classNames.TODO_CHECKBOX)
     newTodoDiv.appendChild(checkbox)
 
@@ -43,9 +52,14 @@ function newTodo() {
     // get number of list items and render to item-count
     const count = list.childNodes.length
     itemCountSpan.innerHTML = count
+
+    // render unchecked count to update when new item is added
+    getUncheckedCount()
     
   } else {
     alert('No todo has been entered!  Please try again.')
   }
   
+  
+
 }
